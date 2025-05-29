@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 
 interface Slide {
@@ -16,24 +16,27 @@ interface ImageSlideshowProps {
 }
 
 const ImageSlideshow = ({ onColorChange }: ImageSlideshowProps) => {
-    const slides: Slide[] = [
-        {
-            src: "/images/homeimage.jpg",
-            alt: "ST. GEORGE HOREB JACOBITE SYRIAN CHURCH, VADAKKUMBHAGAM",
-            preTitle: "I am the light of the world",
-            title: "Join Our Community",
-            subtitle: "Sunday Service at 9:00 AM",
-            dominantColor: "#4a5568",
-        },
-        {
-            src: "/images/homeimage2.jpg",
-            alt: "ST. GEORGE HOREB JACOBITE SYRIAN CHURCH, VADAKKUMBHAGAM",
-            preTitle: "Love. Serve. Worship.",
-            title: "Experience His Presence",
-            subtitle: "Mid-week prayers every Wednesday",
-            dominantColor: "#744210",
-        },
-    ];
+    const slides: Slide[] = useMemo(
+        () => [
+            {
+                src: "/images/homeimage.jpg",
+                alt: "ST. GEORGE HOREB JACOBITE SYRIAN CHURCH, VADAKKUMBHAGAM",
+                preTitle: "I am the light of the world",
+                title: "Join Our Community",
+                subtitle: "Sunday Service at 9:00 AM",
+                dominantColor: "#4a5568",
+            },
+            {
+                src: "/images/homeimage2.jpg",
+                alt: "ST. GEORGE HOREB JACOBITE SYRIAN CHURCH, VADAKKUMBHAGAM",
+                preTitle: "Love. Serve. Worship.",
+                title: "Experience His Presence",
+                subtitle: "Mid-week prayers every Wednesday",
+                dominantColor: "#744210",
+            },
+        ],
+        []
+    );
 
     const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -43,11 +46,11 @@ const ImageSlideshow = ({ onColorChange }: ImageSlideshowProps) => {
         }, 5000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [slides.length]);
 
     useEffect(() => {
         onColorChange(slides[currentSlide].dominantColor);
-    }, [currentSlide, onColorChange]);
+    }, [currentSlide, onColorChange, slides]);
 
     const goToSlide = (index: number) => {
         setCurrentSlide(index);

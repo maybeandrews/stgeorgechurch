@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface HeaderProps {
     initialColor?: string; // Make initialColor optional
@@ -42,9 +43,11 @@ const Header = ({ initialColor }: HeaderProps) => {
                     {/* Church Name & Logo */}
                     <div className="flex items-center">
                         {/* Placeholder for a logo if you add one later */}
-                        <img
+                        <Image
                             src="/churchlogo.png"
                             alt="Church Logo"
+                            width={48} // Add appropriate width
+                            height={48} // Add appropriate height
                             className="h-12 w-auto mr-3"
                         />
                         <div

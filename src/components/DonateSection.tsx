@@ -11,8 +11,8 @@ export default function DonateSection() {
                     </h2>
                     <p className="text-xl mb-8">
                         Your generous donations help us continue our mission of
-                        spreading God's love and serving our community. Every
-                        contribution makes a difference.
+                        spreading God&apos;s love and serving our community.
+                        Every contribution makes a difference.
                     </p>
                     <div className="grid md:grid-cols-3 gap-8 mb-8">
                         <div className="bg-white bg-opacity-20 rounded-lg p-6">
